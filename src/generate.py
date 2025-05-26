@@ -1,4 +1,4 @@
-from transformers import AutoModelForCasualLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
 def generate_protein_sequences(
@@ -11,7 +11,7 @@ def generate_protein_sequences(
     # Load model and tokenizer
     print("Loading model and tokenizer...")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForCasualLM.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name)
 
     # Start generation
     print(f"Generating {num_sequences} protein sequences...")
