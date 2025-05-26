@@ -5,3 +5,16 @@ Basic FASTA format structure:
 A FASTA file consists of:
 1. Header line (starts with >) - describes the sequence.
 2. Sequence lines - actual sequence data (letters representing nucleotides or amino acids)
+
+Example"
+>sequence_1
+MVKVGVNGFGRIGRLVTRAAFNSGKVDIVLDSGDGVTHVVWGKVEAD...
+
+>sequence_2
+MPEFQVVAQFVEKAKGVIAGGLGDLFMRHQTGGQLLPVLH...
+
+Key points of FASTA format:
+- Each sequence entry starts with a header line beginning with ?
+- The header can include a name or description
+- The next lines are the sequence itself (can be multiple line for readibility)
+- No strict requirement for line length, but ofter 60-80 characters per line
