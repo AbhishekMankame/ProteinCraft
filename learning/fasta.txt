@@ -1,4 +1,4 @@
-## What is FASTA format?
+## 🧬What is FASTA format?
 FASTA is a text-based file format for representing biological sequences - like protein or nucleotide sequences (DNA/RNA). It's universally used in bioinformatics tools and databases.
 
 Basic FASTA format structure:
@@ -18,3 +18,11 @@ Key points of FASTA format:
 - The header can include a name or description
 - The next lines are the sequence itself (can be multiple line for readibility)
 - No strict requirement for line length, but ofter 60-80 characters per line
+
+⚡️Why is it used?
+- It's standardized and human-readable
+- Compatible with most bioinformatics tools (BLAST, HMMER, Clustal Omega, etc.)
+- Makes it easy to store and exchange sequence data
+
+Summary
+FASTA is a simple and clean way to store protein/DNA/RNA sequences, making them ready for bioinformatics tools. In this project, it ensures that the generated protein sequences can be easily reused for further analysis, alignments, or even 3D structure predictions!
