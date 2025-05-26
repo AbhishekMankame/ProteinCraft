@@ -13,8 +13,12 @@ def generate_protein_sequences(
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name)
 
-    # Create input IDs (starting from an empty sequence)
-    input_ids = tokenizer("", return_tensors="pt").input_ids
+    # Create input IDs
+    # If ProtGPT2 has a bos_token_id, use it. Otherwise, use a dummy start token start token like "M" (start of many protein sequences)
+    if tokenizer.bos_token_id:
+        input_ids = torch.tensor([[tokenizer.bos_token_id]])
+    else:
+        input_ids = tokenizer("", return_tensors="pt").input_ids
 
     # Start generation
     print(f"Generating {num_sequences} protein sequences...")
