@@ -1,7 +1,7 @@
 from transformers import AutoModelForCasualLM, AutoTokenizer
 import torch
 
-def generate_protein_sequence(
+def generate_protein_sequences(
         model_name="nferruz/ProtGPT2",
         max_length=100,
         num_sequences=5,
@@ -24,3 +24,15 @@ def generate_protein_sequence(
         top_p=top_p,
         num_return_sequences = num_sequences
     )
+
+    # Decode and print sequences 
+    generated_sequences = []
+    for i, output_seq in enumerate(output_sequences):
+        sequence = tokenizer.decode(output_seq, skip_special_tokens=True)
+        generated_sequences.append(sequence)
+        print(f"Sequence {i+1}:\n{sequence}\n")
+
+    return generated_sequences
+
+if __name__ == "__main__":
+    generate_protein_sequences()
