@@ -23,8 +23,21 @@ def generate_protein_sequences():
         do_sample=True,
         top_k=50,
         top_p=0.95,
-        num_return_sequences=5
+        num_return_sequences=5,
+        pad_token_id=tokenizer.eos_token_id # explicitly set pad token
     )
+
+    # Save generated sequences to FASTA file
+    output_file = "generated_sequences.fasta"
+    with open(output_file, "w") as f:
+        for i, generated_sequence in enumerate(output_sequences):
+            decoded = tokenizer.decode(generated_sequence, skip_special_tokens=True)
+            print(f"Sequence {i+1}: {decoded}")
+            # write in FASTA format
+            f.write(f">sequence_{i+1}\n")
+            f.write(decoded + "\n\n")
+
+        print(f"All sequences saved to {output_file}")
 
     for i, generated_sequence in enumerate(output_sequences):
         decoded = tokenizer.decode(generated_sequence, skip_special_tokens=True)
