@@ -1,45 +1,34 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
-def generate_protein_sequences(
-        model_name="nferruz/ProtGPT2",
-        max_length=100,
-        num_sequences=5,
-        top_k=50,
-        top_p=0.95
-):
-    # Load model and tokenizer
-    print("Loading model and tokenizer...")
+def generate_protein_sequences():
+    model_name = "nferruz/ProtGPT2"
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name)
 
-    # Create input IDs
-    # If ProtGPT2 has a bos_token_id, use it. Otherwise, use a dummy start token start token like "M" (start of many protein sequences)
-    if tokenizer.bos_token_id:
-        input_ids = torch.tensor([[tokenizer.bos_token_id]])
-    else:
-        input_ids = tokenizer("", return_tensors="pt").input_ids
+    # Starting with a typical starting token
+    input_text = "M"  # works fine if it’s a valid token
+    inputs = tokenizer(input_text, return_tensors="pt", add_special_tokens=True)
 
-    # Start generation
-    print(f"Generating {num_sequences} protein sequences...")
-    import_ids = tokenizer("", return_tensors="pt").input_ids
+    input_ids = inputs["input_ids"]
+    attention_mask = inputs["attention_mask"]
+
+    print("Input IDs shape:", input_ids.shape)
+    print("Attention mask shape:", attention_mask.shape)
+
     output_sequences = model.generate(
-        input_ids,
-        max_length = max_length,
+        input_ids=input_ids,
+        attention_mask=attention_mask,
+        max_length=100,
         do_sample=True,
-        top_k=top_k,
-        top_p=top_p,
-        num_return_sequences = num_sequences
+        top_k=50,
+        top_p=0.95,
+        num_return_sequences=5
     )
 
-    # Decode and print sequences 
-    generated_sequences = []
-    for i, output_seq in enumerate(output_sequences):
-        sequence = tokenizer.decode(output_seq, skip_special_tokens=True)
-        generated_sequences.append(sequence)
-        print(f"Sequence {i+1}:\n{sequence}\n")
-
-    return generated_sequences
+    for i, generated_sequence in enumerate(output_sequences):
+        decoded = tokenizer.decode(generated_sequence, skip_special_tokens=True)
+        print(f"Sequence {i+1}: {decoded}")
 
 if __name__ == "__main__":
     generate_protein_sequences()
