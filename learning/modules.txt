@@ -1,0 +1,7 @@
+## What is FASTA format?
+FASTA is a text-based file format for representing biological sequences - like protein or nucleotide sequences (DNA/RNA). It's universally used in bioinformatics tools and databases.
+
+Basic FASTA format structure:
+A FASTA file consists of:
+1. Header line (starts with >) - describes the sequence.
+2. Sequence lines - actual sequence data (letters representing nucleotides or amino acids)
