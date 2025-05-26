@@ -21,9 +21,9 @@ def generate_protein_sequences():
         attention_mask=attention_mask,
         max_length=200,
         do_sample=True,
-        top_k=50,
-        top_p=0.95,
-        temperature=0.7,
+        top_k=0,
+        top_p=1.0,
+        temperature=1.2,
         num_return_sequences=5,
         pad_token_id=tokenizer.eos_token_id # explicitly set pad token
     )
