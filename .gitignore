@@ -16,3 +16,8 @@ venv/
 
 # VS Code
 .vscode/
+
+
+## Note: .gitignore is a special file used by Git to tell it which files and directories to ignore when committing changes to your repository.
+# Avoid committing unnecessary files -> Temporary files (__pycache__, .ipynb_checkpoints/)
+# Local environment files (.env, .venv/)
