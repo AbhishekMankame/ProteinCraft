@@ -19,10 +19,11 @@ def generate_protein_sequences():
     output_sequences = model.generate(
         input_ids=input_ids,
         attention_mask=attention_mask,
-        max_length=100,
+        max_length=200,
         do_sample=True,
         top_k=50,
         top_p=0.95,
+        temperature=0.7,
         num_return_sequences=5,
         pad_token_id=tokenizer.eos_token_id # explicitly set pad token
     )
