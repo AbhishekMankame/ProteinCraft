@@ -13,11 +13,14 @@ def generate_protein_sequences(
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name)
 
+    # Create input IDs (starting from an empty sequence)
+    input_ids = tokenizer("", return_tensors="pt").input_ids
+
     # Start generation
     print(f"Generating {num_sequences} protein sequences...")
     import_ids = tokenizer("", return_tensors="pt").input_ids
     output_sequences = model.generate(
-        input_ids = input_ids,
+        input_ids,
         max_length = max_length,
         do_sample=True,
         top_k=top_k,
