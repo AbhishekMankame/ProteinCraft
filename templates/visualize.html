@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProteinCraft 3D Viewer</title>
-    <script src="https://cdn.jsdelivr.net/npm/ngl@2.0.0-dev.38/dist/ngl.js"></script>
+  <meta charset="UTF-8" />
+  <title>ProteinCraft 3D Viewer</title>
+  <script src="https://cdn.jsdelivr.net/npm/ngl@2.0.0-dev.38/dist/ngl.js"></script>
 </head>
 <body>
-    <h1>ProteinCraft: 3D Structure</h1>
-    <div id="viewport" style="width: 600px; height: 600px;"></div>
-    <script>
-        var stage = new NGL.Stage("viewport");
+  <h1>ProteinCraft: 3D Structure</h1>
+  <div id="viewport" style="width: 600px; height: 600px;"></div>
 
-        // Example protein: 1crn (crambin)
-        stage.loadFile("rcsb://1crn", {defaultRepresentation: true});
-    </script>
-    
+  <script>
+    var stage = new NGL.Stage("viewport");
+    stage.loadFile("rcsb://1crn", { defaultRepresentation: true });
+  </script>
 </body>
 </html>
